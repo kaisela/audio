@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>hello world</title>
+		<style>
+			audio{display: none;}
+			div{margin-bottom: 12px;}
+		</style>
+		<script src="js/jquery-2.0.3.min.js"></script>
+		<script src="js/audio.js"></script>
+		<script type="text/javascript">
+		var d = new Date();
+		var t = d.getTime();
+		console.log(t);
+			$(document).ready(function() {
+				    //audio使用:
+					$("input").unbind("click").bind("click",function(){
+					        //gid 表示歌曲id,只是一个表示，没有值不影响播放
+					    //song_fileUrl :播放歌曲地址，不能为空，有效地址
+					   // g_audio.elems["id"] = gid;
+					   var src = $(this).attr("data-src");
+					   var index = $(this).index();
+					   var element = {};
+					   element.id = $(this).index();
+					   element.flag = true;
+					   element.callBack = function(){
+					   //	alert(1);
+					   };
+					   g_audio.push({song_fileUrl:src,elem:element});
+//					  var index = $(this).index();
+//					  var audio = null;
+//					  for(var i=0;i<audios.length;i++){
+//					  	var curItem = audios[i];
+//					  	if(index == curItem.id){
+//					  		audio = curItem[index];
+//					  		break;
+//					  	}
+//					  }
+//					  if(audio !== null){
+//						  	audio.pause();
+//						  
+//					  }else{
+//					  	  audio = createAudio();
+//						  var item = {index:audio}
+//						  item.id = index; 
+//						  audios.push(item); 
+//						  audio.push({song_fileUrl:$(this).attr("data-src")});
+//					  }
+//					  
+					});//绑定事件
+				});
+				 
+				
+		</script>
+
+	</head>
+
+	<body>
+		<input data-src = "http://121.52.220.138:81/File/ShowAvi/20150403N8QRLHMMRJ_mp3,http://121.52.220.138:81/File/ShowAvi/201504T2Y51P6LG1MY_mp3," type="button" value="play" style="margin-top: 100px;width: 100px; height: 50px;" />
+		<input data-src = "http://121.52.220.138:81/File/ShowAvi/2015044UKMIIEROOVY_mp3," type="button" value="play" style="margin-top: 100px;width: 100px; height: 50px;" />
+		<input data-src = "17.mp3,46.mp3" type="button" value="play" style="margin-top: 100px;width: 100px; height: 50px;" />
+	</body>
+
+</html>

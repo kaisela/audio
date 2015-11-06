@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>hello world</title>
+		<style>
+			audio{display: none; width: 0px; height: 0px;}
+			div{margin-bottom: 12px;}
+		</style>
+		<script src="js/jquery-2.0.3.min.js"></script>
+		<script src="js/audio.min.js"></script>
+		<script type="text/javascript">
+			function helloworld(){
+					alert("hello world!")
+				}
+		   		document.addEventListener('plusready', function(){
+		   			alert("welcome to Html5plus!");
+		   		});
+				
+				function initFlag(){
+		   			var audios = $(".audio1");
+		   			var flags = [];
+		   			for(var i=0; i < audios.length; i++){
+		   				flags[i] = false;
+		   			}
+		   			return flags;
+		   		}
+		   		var flags = initFlag();
+		   		function playAudio(i,index){
+		   			if(flags[index] == true){
+			   			var audio = $(".audio1:eq("+(i)+")")[0];
+			   			var input = $(".audio1:eq("+(i)+")").parent().find("input");
+			   			input.val("pause");
+			   			if(audio){
+			   				i++;
+			   				(function(j,k){
+			   					audio.play();
+				   				audio.addEventListener('ended', function () {
+//				   					if(audio.currentTime > 0){
+//				   						audio.currentTime = 0;
+//				   						audio.pause();
+//				   						input.val("play");
+//				   					}
+				   					input.val("play");
+									i++;
+								   playAudio(j,k);
+								}, false);
+		   					})(i,index);
+			   			}
+		   			}else{
+		   				return;
+		   			}
+		   		}
+		   		
+		   		$(function(){
+		   			$(document).on('touchstart', function() {
+		   				$(".audio1").each(function(){
+		   					this.load();
+		   				});
+					})
+		   			$(".test").click(function(){
+		   				
+		   				var audios = $(".audio1");
+		   				var index = $(this).parent().index(".audio");
+		   				flags = initFlag();
+		   				flags[index] = true;
+		   				var curaudio = $(".audio1:eq("+(index)+")")[0];
+		   				console.log(curaudio.paused);
+		   				if(!curaudio.paused){
+		   						curaudio.pause();
+		   						$(this).val("paly");
+		   				}else{
+		   					$(".audio1").each(function(){
+		   						var input = $(this).parent().find("input");
+			   					if(!this.paused){
+			   						this.pause();
+			   						input.val("play");
+			   					}
+			   					
+			   				});
+			   				(function(j){
+			   					playAudio(j,j);
+			   				})(index);
+		   				}
+		   				
+		   				
+		   			});
+		   		});
+		</script>
+		
+	</head>
+
+	<body>
+		test
+		<div class="audio">
+			<audio class="audio1" controls="controls" preload="auto" >
+				<source src="12345.mp3" type="audio/mpeg" /> Your browser does not support the audio element.
+			</audio>
+			<input class="test" type="button" value="paly" loop="false" />
+		</div>
+		<div class="audio">
+			<audio class="audio1" controls="controls" preload="auto" >
+				<source src="06.mp3" type="audio/mpeg" /> Your browser does not support the audio element.
+			</audio>
+			<input class="test" type="button" value="paly" loop="false" />
+		</div>
+		<div class="audio">
+			<audio class="audio1" controls="controls" >
+				<source src="46.mp3" type="audio/mpeg" /> Your browser does not support the audio element.
+			</audio>
+			<input class="test" type="button" value="paly" loop="false" />
+		</div>
+		<div class="audio">
+			<audio class="audio1" controls="controls" >
+				<source src="06.mp3" type="audio/mpeg" /> Your browser does not support the audio element.
+			</audio>
+			<input class="test" type="button" value="paly" loop="false" />
+		</div>
+		<div class="audio">
+			<audio class="audio1" controls="controls" >
+				<source src="17.mp3" type="audio/mpeg" /> Your browser does not support the audio element.
+			</audio>
+			<input class="test" type="button" value="paly" loop="false" />
+		</div>
+		<div class="audio">
+			<audio class="audio1" controls="controls" >
+				<source src="06.mp3" type="audio/mpeg" /> Your browser does not support the audio element.
+			</audio>
+			<input class="test" type="button" value="paly" loop="false" />
+		</div >
+		<div class="audio">
+			<audio class="audio1" controls="controls" >
+				<source src="46.mp3" type="audio/mpeg" /> Your browser does not support the audio element.
+			</audio>
+			<input class="test" type="button" value="paly" loop="false" />
+		</div>
+		
+		<!--<div>
+			<audio class="audio1" controls="controls" >
+				<source src="test.mp3" type="audio/mpeg" /> Your browser does not support the audio element.
+			</audio>
+			<input class="test" type="button" value="paly" />
+		</div>
+		
+		<div>
+			<audio class="audio1" controls="controls" >
+				<source src="test.mp3" type="audio/mpeg" /> Your browser does not support the audio element.
+			</audio>
+			<input class="test" type="button" value="paly" />
+		</div>-->
+		
+	</body>
+
+</html>

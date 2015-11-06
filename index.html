@@ -1,0 +1,48 @@
+<html >
+<head>
+<title>Full player example</title>
+<script src="js/jquery-2.0.3.min.js"></script>
+<script src="js/audio1.js"></script>
+<script type="text/javascript">
+function init() {
+var video = new Audio(); 
+if (video.canPlayType) { 
+
+	function vidplay(evt) {
+	if (video.src == "") { 
+		getVideo();
+	}
+	button = evt.target; 
+	if (video.paused) { 
+		video.play();
+		button.textContent = "||";
+	} else {
+		video.pause();
+		button.textContent = ">";
+	}
+	}
+
+// 加载声音文件
+	function getVideo() {
+	var fileURL = $("#play").attr("data-src"); 
+		if (fileURL != "") {
+			video.src = fileURL;
+			video.load(); 
+		document.getElementById("play").click(); 
+		} else {
+			errMessage("Enter a valid video URL"); 
+		}
+	}
+	document.getElementById("play").addEventListener("click", vidplay, false);
+	}
+}
+</script>
+ 
+</head>
+<body onload="init();" > 
+
+<button id="play" title="Play button" data-src = "1.mp3">&gt;</button>
+
+
+</body>
+</html>

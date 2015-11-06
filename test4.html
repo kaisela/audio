@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+<audio id="audio" controls="true" autoplay="true">
+  <source src="32.mp3" type="audio/ogg">
+Your browser does not support the audio element.
+</audio>
+<script>
+var audio = document.getElementById("audio"); 
+audio.loop = false;
+audio.addEventListener('ended', function () {  
+    alert('over');
+}, false);
+</script> 
+</body>
+</html>
